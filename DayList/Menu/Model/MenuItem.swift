@@ -36,4 +36,5 @@ enum MenuDestination {
     case upcoming
     case calendar
     case stickyWall
+    case settings 
 }
