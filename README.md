@@ -1,180 +1,120 @@
 # DayList – iOS To-Do Application
 
-## Introduction  
+## Introduction
 
-DayList is a clean and minimal **iOS To-Do application** built using **Swift**, **UIKit**, and **Storyboards**.  
-The project focuses on building a solid **authentication and task-management foundation**, starting from onboarding and authentication to viewing and managing daily tasks.
+DayList is a clean and minimal **iOS To-Do application** built using **Swift**, **UIKit**, and **Storyboards**.
+The project focuses on building a solid **authentication and task-management foundation**, featuring a custom side menu, categorized task lists (Today, Upcoming, Work), and smart user interactions.
 
-This repository demonstrates a **real-world iOS app flow** including **Onboarding**, **Authentication**, a **Today task list**, and a **Task Detail screen**, integrated with **Firebase Email & Password Authentication**.
-
----
-
-## Screens Included  
-
-- **Onboarding Screen**  
-  Introductory screen displayed on first launch  
-
-- **Sign In Screen**  
-  Login using email and password  
-
-- **Sign Up Screen**  
-  Account creation using email and password  
-
-- **Today Screen (Task List)**  
-  Displays the user’s daily tasks in a clean list  
-
-- **Task Detail Screen**  
-  Displays detailed information about a selected task  
+This repository demonstrates a **real-world iOS app flow** including **Onboarding**, **Firebase Authentication**, **Custom Side Menu Navigation**, and **Advanced TableView handling**.
 
 ---
 
-## Features  
+## Screens Included
 
-### Onboarding Screen  
+- **Onboarding Screen**
+  Introductory screen displayed on first launch.
 
-- Acts as the entry point of the application  
-- Introduces the purpose of the app  
-- Clean and distraction-free UI  
-- Navigates users to the authentication flow  
+- **Sign In & Sign Up Screens**
+  Secure authentication using Firebase (Email & Password).
 
----
+- **Menu Screen (Side Navigation)**
+  A central hub to navigate between Tasks (Today, Upcoming, Calendar), Lists (Personal, Work), Sticky Wall, and Tags. Includes a "Sign Out" feature.
 
-### Sign Up Screen  
+- **Today Screen**
+  Displays the user's daily tasks in a clean list.
 
-- User registration using **Email & Password**  
-- Integrated with **Firebase Authentication**  
-- Input validation for empty fields  
-- Password confirmation matching  
-- Smooth navigation to Sign In after successful registration  
+- **Upcoming Screen**
+  A complex multi-section view ("Today", "Tomorrow", "This Week") where each section has its own interactive "Add New Task" input field.
 
----
+- **Work Screen**
+  A dedicated project list with specific tasks, color-coded tags, and a task counter.
 
-### Sign In Screen  
+- **Task Detail Screen**
+  Displays detailed information about a selected task.
 
-- User login using **Email & Password**  
-- Firebase Authentication integration  
-- Proper error handling for invalid credentials  
-- Secure password input with visibility toggle  
-- Keyboard dismissal on outside tap  
+- **Sticky Wall Screen**
+  A visual note board that displays ideas and thoughts as color-coded sticky cards using a custom UICollectionView layout.
 
 ---
 
-### Today Screen (Task List)  
+## Features
 
-- Displays a list of daily tasks using **UITableView**  
-- Each task cell includes:
-  - Task title  
-  - Due date (optional)  
-  - Subtask count (optional)  
-  - List/category tag with color indicator  
-- Custom dynamic cells that adapt based on available task data  
-- Clean separators between tasks for better readability  
+###  Onboarding & Authentication
+- **Entry Point:** Clean onboarding flow introducing the app.
+- **Validation:** Real-time checks for email format, password strength, and matching confirmation fields.
+- **Firebase Auth:** Secure account creation and login handling.
+- **Error Handling:** Clear inline error messages for invalid inputs.
 
----
+###  Custom Side Menu
+- **Central Navigation:** Navigate between "Today", "Upcoming", "Calendar", "Sticky Wall", and custom Lists.
+- **Dynamic Content:** Lists can be expanded, and new lists can be added directly from the menu.
+- **Sign Out:** Integrated logout functionality.
 
-### Task Detail Screen  
+###  Upcoming Task Management
+- **Multi-Section Layout:** Tasks categorized by "Today", "Tomorrow", and "This Week".
+- **Smart Input Fields:** Each section has a dedicated "Add New Task" row that allows typing without navigation.
+- **Gesture Handling:** Smart keyboard dismissal that distinguishes between tapping a button (to type) and tapping the background (to close).
 
-- Opens when a task is tapped from the Today screen  
-- Displays detailed task information such as:
-  - Task title  
-  - Description field  
-  - Due date  
-  - List/category selection  
-- Designed using **UIKit + Storyboard**, compatible with iOS 12  
-- Acts as the foundation for future task editing and management features  
+###  Work & Project Lists
+- **Custom List Views:** Dedicated screens for specific projects (like "Work").
+- **Task Metadata:** Tasks display subtask counts, due dates, and color-coded list tags.
+- **Reusability:** Uses a shared, highly configurable `TaskTableViewCell` to ensure consistent design across all screens.
 
----
+###  Sticky Wall (Visual Notes Board)
+- **Grid-Based Layout:** Built using `UICollectionView` with a custom flow layout.
+- **Mixed Card Sizes:**
+  - A large, full-width sticky note at the top.
+  - Smaller two-column sticky notes below.
+- **Color-Coded Cards:** Each sticky note has a soft background color for visual grouping.
+- **Dynamic Text Support:** Cards automatically expand based on content length.
+- **Clean UI:** Rounded corners, consistent spacing, and minimal styling to match modern iOS design.
+- **Navigation:** Opens directly from the Menu under the “Sticky Wall” option.
 
-### Firebase Authentication  
-
-- Firebase **Email & Password Authentication** implemented  
-- Secure user registration and login  
-- Authentication state managed using Firebase APIs  
-- Code structure ready for future enhancements such as:
-  - Password reset  
-  - Email verification  
-
----
-
-### Keyboard Handling  
-
-- Keyboard dismisses when tapping outside input fields  
-- Improves usability on real devices  
-- Implemented using an **iOS 12-compatible approach**  
+###  Technical Highlights
+- **Architecture:** MVC (Model-View-Controller).
+- **UIKit & Storyboards:** Layouts built using Interface Builder and programmatic constraints.
+- **Advanced TableView:** Handling multiple cell types, custom headers, and conflict resolution between touch gestures and table selection.
+- **CollectionView Layouts:** Custom sizing logic for grid-based and full-width cards.
+- **Compatibility:** Optimized for iOS 12+ (using fallbacks for SF Symbols).
 
 ---
 
-### Navigation  
-
-- Uses **UINavigationController** for screen transitions  
-- Navigation handled via **Storyboards**  
-- Smooth and predictable back-navigation behavior  
-- Task selection navigates to the Task Detail screen  
-
----
-
-## Screenshots  
+## Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-
-  <img width="250" src="https://github.com/user-attachments/assets/52b9fafa-1f2c-4308-a54c-22dd89a3a420" alt="Onboarding Screen" />
-
-  <img width="250" src="https://github.com/user-attachments/assets/1c9d7b57-5d0d-40e5-9b2e-3c942a5b46f6" alt="Sign In Screen" />
-
-  <img width="250" src="https://github.com/user-attachments/assets/a5965370-0b07-4f89-b289-e9e4e352f35b" alt="Sign Up Screen" />
-
-  <img width="250" src="https://github.com/user-attachments/assets/fbfecc8a-3b42-450c-a09e-43bdab49cdfc" alt="Today Task List Screen" />
-
-  <img width="250" src="https://github.com/user-attachments/assets/dc169049-17cb-4b69-9616-91c895f69952" alt="Task Detail Screen" />
-
+  <img width="200" src="https://github.com/user-attachments/assets/76601711-2cec-4a8b-9044-f6becb890de0" alt="Onboarding" />
+  <img width="200" src="https://github.com/user-attachments/assets/eb411fe0-2493-4fd6-a2a0-d473ba589938" alt="Sign In" />
+  <img width="200" src="https://github.com/user-attachments/assets/f5ebe084-4fa3-4a19-b625-b9a474efda01" alt="Sign Up" />
+  <img width="200" src="https://github.com/user-attachments/assets/d2090eef-3cf6-4cd3-8aeb-ef6989ba8e69" alt="Today List" />
+  <img width="200" src="https://github.com/user-attachments/assets/abb2ba58-6e10-4b7d-83e8-e28c38f71227" alt="Detail Screen" />
+  <img width="200" src="https://github.com/user-attachments/assets/eb3fd823-ba06-4695-a899-effb7c359005" alt="Menu Screen" />
+  <img width="200" src="https://github.com/user-attachments/assets/388aabd4-d1a3-4501-915a-9bbe0f3ed725" alt="Upcoming Screen" />
+  <img width="200" src="https://github.com/user-attachments/assets/991c50d6-d704-4c08-988c-ee75b0b0095e" alt="Work Screen" />
+  <img width="200" src="https://github.com/user-attachments/assets/3cd8ba0e-a4b4-43b7-a2f9-f83dc494a8ce" alt="StickyWall Screen" />
 </div>
+
+---
+
+## Prerequisites
+
+- Xcode **12.4** or later
+- iOS **12.0** or later
+- Firebase project with **Email/Password Authentication enabled**
 
 ---
 
 ## Demo Video  
 
 🎬 **Watch Full Demo**  
-https://go.screenpal.com/watch/cOV1XknrbFj 
+https://go.screenpal.com/watch/cOVlIlnrauA
 
 ---
 
-## Prerequisites  
 
-- Xcode **12.4** or later  
-- iOS **12.0** or later  
-- Firebase project with **Email/Password Authentication enabled**  
-
----
-
-## Installation  
-
-1. Clone the repository  
-2. Open the project in Xcode  
-3. Add your `GoogleService-Info.plist` file  
-4. Run the project on a simulator or real device  
-
----
-
-## License  
+## License
 
 This project is created for **learning and portfolio purposes**.
 
----
+## Contributing
 
-## Contributing  
-
-Contributions are welcome.  
-Feel free to submit an issue or create a pull request for improvements.
-
----
-
-## Support  
-
-If you encounter any issues or have questions, please contact the project maintainer.
-
----
-
-## Acknowledgements  
-
-Thanks to the **Apple Developer Documentation** and **Firebase Documentation**,  
-which greatly helped during the development of this project.
+Contributions are welcome. Feel free to submit an issue or create a pull request for improvements.
