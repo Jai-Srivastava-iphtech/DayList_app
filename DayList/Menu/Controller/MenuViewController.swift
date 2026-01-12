@@ -188,17 +188,44 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch menuData[indexPath.row] {
 
         case .menuItem(let item):
-                    selectedIndexPath = indexPath
-                    // tableView.reloadData() // Optional, mostly visual
+            selectedIndexPath = indexPath
+            if item.title == "Sticky Wall" {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(
+                    withIdentifier: "StickyWallViewController"
+                ) as? StickyWallViewController {
 
-                    // --- REDIRECTION LOGIC ---
-                    if item.title == "Upcoming" {
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        if let upcomingVC = storyboard.instantiateViewController(withIdentifier: "UpcomingViewController") as? UpcomingViewController {
-                            upcomingVC.modalPresentationStyle = .fullScreen
-                            self.present(upcomingVC, animated: true, completion: nil)
-                        }
-                    }
+                    vc.modalPresentationStyle = .fullScreen
+                    present(vc, animated: true)
+                }
+            }
+
+
+            if item.title == "Calendar" {
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+                if let calendarVC = storyboard.instantiateViewController(
+                    withIdentifier: "CalendarViewController"
+                ) as? CalendarViewController {
+
+                    calendarVC.modalPresentationStyle = .fullScreen
+                    self.present(calendarVC, animated: true, completion: nil)
+                }
+            }
+
+            else if item.title == "Upcoming" {
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let upcomingVC = storyboard.instantiateViewController(
+                    withIdentifier: "UpcomingViewController"
+                ) as? UpcomingViewController {
+
+                    upcomingVC.modalPresentationStyle = .fullScreen
+                    self.present(upcomingVC, animated: true, completion: nil)
+                }
+            }
+
 
         case .listItem(let color, let title, let count):
             selectedIndexPath = indexPath
