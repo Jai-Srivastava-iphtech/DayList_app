@@ -1,8 +1,13 @@
+//
+//  TaskTableViewCell.swift
+//  DayList
+//
+
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
 
-    // MARK: - Outlets (made optional for safety)
+    // MARK: - Outlets
     @IBOutlet weak var titleContainerView: UIView?
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var checkboxButton: UIButton?
@@ -18,23 +23,14 @@ class TaskTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Debug print to see if outlets are connected
-        print("awakeFromNib called")
-        print("titleLabel: \(titleLabel != nil)")
-        print("checkboxButton: \(checkboxButton != nil)")
-        print("arrowButton: \(arrowButton != nil)")
-
-        //  Disable buttons eating touches (safely)
         checkboxButton?.isUserInteractionEnabled = false
         arrowButton?.isUserInteractionEnabled = false
 
-        // Add tap recognizer to whole cell
         let tap = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         contentView.addGestureRecognizer(tap)
     }
 
     @objc private func cellTapped() {
-        print(" CELL TAP DETECTED")
         onCellTap?()
     }
 
@@ -45,9 +41,6 @@ class TaskTableViewCell: UITableViewCell {
     }
 
     func configure(with task: Task) {
-        
-        print(" Configuring cell with task: \(task.title)")
-
         titleLabel?.text = task.title
 
         titleContainerView?.setContentHuggingPriority(.required, for: .vertical)
@@ -67,15 +60,21 @@ class TaskTableViewCell: UITableViewCell {
         // DATE
         if let date = task.dateText {
             hasMetadata = true
-
-            let icon = UIImageView(image: UIImage(named: "biugyffb"))
-            icon.contentMode = .scaleAspectFit
+            
+            var icon = UIImageView()
+            if #available(iOS 13.0, *) {
+                icon = UIImageView(image: UIImage(named: "cal"))
+            }
+            icon.tintColor = .systemGray
+            icon.contentMode = .scaleAspectFill
             icon.translatesAutoresizingMaskIntoConstraints = false
 
+            // --- UPDATED SIZE HERE (14 -> 18) ---
             NSLayoutConstraint.activate([
-                icon.widthAnchor.constraint(equalToConstant: 20),
-                icon.heightAnchor.constraint(equalToConstant: 20)
+                icon.widthAnchor.constraint(equalToConstant: 18),
+                icon.heightAnchor.constraint(equalToConstant: 18)
             ])
+            // ------------------------------------
 
             let label = UILabel()
             label.text = date
@@ -83,29 +82,27 @@ class TaskTableViewCell: UITableViewCell {
             label.textColor = .systemGray
 
             let dateStack = UIStackView(arrangedSubviews: [icon, label])
-            dateStack.spacing = 4
+            dateStack.spacing = 6 // Increased spacing slightly
             dateStack.alignment = .center
-
             stack.addArrangedSubview(dateStack)
         }
 
         // SUBTASK
         if let countText = task.subtaskCountText {
             hasMetadata = true
-
             let badge = UILabel()
             badge.text = countText
             badge.font = .systemFont(ofSize: 11, weight: .medium)
-            badge.backgroundColor = .systemGray5
+            badge.backgroundColor = UIColor(white: 0.95, alpha: 1)
             badge.textColor = .darkGray
             badge.textAlignment = .center
-            badge.layer.cornerRadius = 6
+            badge.layer.cornerRadius = 4
             badge.clipsToBounds = true
             badge.translatesAutoresizingMaskIntoConstraints = false
 
             NSLayoutConstraint.activate([
                 badge.heightAnchor.constraint(equalToConstant: 18),
-                badge.widthAnchor.constraint(greaterThanOrEqualToConstant: 22)
+                badge.widthAnchor.constraint(greaterThanOrEqualToConstant: 20)
             ])
 
             let text = UILabel()
@@ -115,15 +112,12 @@ class TaskTableViewCell: UITableViewCell {
 
             let subtaskStack = UIStackView(arrangedSubviews: [badge, text])
             subtaskStack.spacing = 4
-
             stack.addArrangedSubview(subtaskStack)
         }
 
         // LIST TAG
-        if let list = task.listName,
-           let color = task.tagColor {
+        if let color = task.tagColor {
             hasMetadata = true
-
             let box = UIView()
             box.backgroundColor = color
             box.layer.cornerRadius = 4
@@ -133,22 +127,24 @@ class TaskTableViewCell: UITableViewCell {
                 box.widthAnchor.constraint(equalToConstant: 12),
                 box.heightAnchor.constraint(equalToConstant: 12)
             ])
-
-            let label = UILabel()
-            label.text = list
-            label.font = .systemFont(ofSize: 12)
-            label.textColor = .systemGray
-
-            let listStack = UIStackView(arrangedSubviews: [box, label])
-            listStack.spacing = 6
-
-            stack.addArrangedSubview(listStack)
+            
+            if let listName = task.listName {
+                let label = UILabel()
+                label.text = listName
+                label.font = .systemFont(ofSize: 12)
+                label.textColor = .systemGray
+                
+                let listStack = UIStackView(arrangedSubviews: [box, label])
+                listStack.spacing = 6
+                stack.addArrangedSubview(listStack)
+            } else {
+                stack.addArrangedSubview(box)
+            }
         }
 
         if hasMetadata {
             contentView.addSubview(stack)
             
-            // Safe constraint setup with fallbacks
             let leadingAnchor = titleLabel?.leadingAnchor ?? contentView.leadingAnchor
             let trailingAnchor = arrowButton?.leadingAnchor ?? contentView.trailingAnchor
             let topAnchor = titleContainerView?.bottomAnchor ?? titleLabel?.bottomAnchor ?? contentView.topAnchor
@@ -159,7 +155,6 @@ class TaskTableViewCell: UITableViewCell {
                 stack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
                 stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
             ])
-
             metadataStackView = stack
         }
 
@@ -167,7 +162,6 @@ class TaskTableViewCell: UITableViewCell {
         let separator = UIView()
         separator.backgroundColor = UIColor(white: 0.9, alpha: 1)
         separator.translatesAutoresizingMaskIntoConstraints = false
-
         contentView.addSubview(separator)
         
         let separatorLeading = checkboxButton?.leadingAnchor ?? contentView.leadingAnchor
@@ -178,14 +172,12 @@ class TaskTableViewCell: UITableViewCell {
             separator.heightAnchor.constraint(equalToConstant: 1),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-
         separatorView = separator
     }
 
     private func removeMetadata() {
         metadataStackView?.removeFromSuperview()
         metadataStackView = nil
-
         separatorView?.removeFromSuperview()
         separatorView = nil
     }
