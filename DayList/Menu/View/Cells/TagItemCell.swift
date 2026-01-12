@@ -1,3 +1,8 @@
+//
+// TagItemCell.swift
+// DayList
+//
+
 import UIKit
 
 class TagItemCell: UICollectionViewCell {
@@ -13,7 +18,6 @@ class TagItemCell: UICollectionViewCell {
         tagLabel.textColor = .darkGray
     }
 
-    // Fixed: added color parameter
     func configure(text: String, isAddButton: Bool, color: UIColor) {
         tagLabel.text = text
         backgroundColor = color

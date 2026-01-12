@@ -1,3 +1,8 @@
+//
+//  HeaderCell.swift
+//  DayList
+//
+
 import UIKit
 
 class HeaderCell: UITableViewCell {
@@ -18,5 +23,3 @@ class HeaderCell: UITableViewCell {
         titleLabel.text = title
     }
 }
-
-
