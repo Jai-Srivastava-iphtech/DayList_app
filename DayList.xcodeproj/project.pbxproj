@@ -19,6 +19,12 @@
 		18405BD12F0D415900EDF043 /* AddButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18405BD02F0D415900EDF043 /* AddButtonCell.swift */; };
 		18405BD42F0D428500EDF043 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18405BD32F0D428500EDF043 /* TagCell.swift */; };
 		18405BD72F0D42E300EDF043 /* TagItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18405BD62F0D42E300EDF043 /* TagItemCell.swift */; };
+		1876126B2F1615890062FD66 /* MonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876126A2F1615890062FD66 /* MonthCell.swift */; };
+		187612792F1626680062FD66 /* WeekEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187612782F1626680062FD66 /* WeekEventCell.swift */; };
+		1876127D2F1647690062FD66 /* WeekEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876127C2F1647690062FD66 /* WeekEvent.swift */; };
+		187612802F16488D0062FD66 /* WeekColumnDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876127F2F16488D0062FD66 /* WeekColumnDividerView.swift */; };
+		187612842F165ECA0062FD66 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 187612832F165ECA0062FD66 /* FSCalendar */; };
+		187612882F1670BA0062FD66 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187612872F1670BA0062FD66 /* TimelineCell.swift */; };
 		1890A0F42F14B16F008053A5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1890A0F32F14B16F008053A5 /* README.md */; };
 		1890A0F92F14C341008053A5 /* SeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890A0F82F14C341008053A5 /* SeparatorCell.swift */; };
 		1890A0FD2F14C796008053A5 /* SignOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890A0FC2F14C796008053A5 /* SignOutCell.swift */; };
@@ -59,6 +65,11 @@
 		18405BD02F0D415900EDF043 /* AddButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonCell.swift; sourceTree = "<group>"; };
 		18405BD32F0D428500EDF043 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		18405BD62F0D42E300EDF043 /* TagItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItemCell.swift; sourceTree = "<group>"; };
+		1876126A2F1615890062FD66 /* MonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCell.swift; sourceTree = "<group>"; };
+		187612782F1626680062FD66 /* WeekEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekEventCell.swift; sourceTree = "<group>"; };
+		1876127C2F1647690062FD66 /* WeekEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekEvent.swift; sourceTree = "<group>"; };
+		1876127F2F16488D0062FD66 /* WeekColumnDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekColumnDividerView.swift; sourceTree = "<group>"; };
+		187612872F1670BA0062FD66 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		1890A0F32F14B16F008053A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../../Downloads/README.md; sourceTree = "<group>"; };
 		1890A0F82F14C341008053A5 /* SeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCell.swift; sourceTree = "<group>"; };
 		1890A0FC2F14C796008053A5 /* SignOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutCell.swift; sourceTree = "<group>"; };
@@ -92,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C9789A2F0BC14300F77F10 /* FirebaseAnalytics in Frameworks */,
+				187612842F165ECA0062FD66 /* FSCalendar in Frameworks */,
 				18C9789C2F0BC14300F77F10 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				1890A1342F1516B5008053A5 /* Cells */,
+				1876127F2F16488D0062FD66 /* WeekColumnDividerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +314,7 @@
 		1890A12D2F14F3F7008053A5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1876127C2F1647690062FD66 /* WeekEvent.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,6 +322,9 @@
 		1890A1342F1516B5008053A5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1876126A2F1615890062FD66 /* MonthCell.swift */,
+				187612782F1626680062FD66 /* WeekEventCell.swift */,
+				187612872F1670BA0062FD66 /* TimelineCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -374,7 +391,6 @@
 		18C978612F0BBA4F00F77F10 /* DayList */ = {
 			isa = PBXGroup;
 			children = (
-				1890A13E2F1521D5008053A5 /* StickyWall */,
 				18C9787A2F0BBB4100F77F10 /* Onboarding */,
 				18C978792F0BBB3700F77F10 /* SignIn */,
 				18C978782F0BBAAE00F77F10 /* SignUp */,
@@ -383,6 +399,7 @@
 				18405BBE2F0D35AF00EDF043 /* Menu */,
 				1890A1182F14D846008053A5 /* UpcomingTask */,
 				1890A12A2F14F3E1008053A5 /* Calendar */,
+				1890A13E2F1521D5008053A5 /* StickyWall */,
 				1890A0FF2F14C9FA008053A5 /* WorkTask */,
 				18C978622F0BBA4F00F77F10 /* AppDelegate.swift */,
 				18C978642F0BBA4F00F77F10 /* SceneDelegate.swift */,
@@ -553,6 +570,7 @@
 			packageProductDependencies = (
 				18C978992F0BC14300F77F10 /* FirebaseAnalytics */,
 				18C9789B2F0BC14300F77F10 /* FirebaseAuth */,
+				187612832F165ECA0062FD66 /* FSCalendar */,
 			);
 			productName = DayList;
 			productReference = 18C9785F2F0BBA4F00F77F10 /* DayList.app */;
@@ -583,6 +601,7 @@
 			mainGroup = 18C978562F0BBA4F00F77F10;
 			packageReferences = (
 				18C978982F0BC14300F77F10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				187612822F165ECA0062FD66 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 18C978602F0BBA4F00F77F10 /* Products */;
 			projectDirPath = "";
@@ -619,18 +638,23 @@
 				18405BC12F0D35C900EDF043 /* MenuViewController.swift in Sources */,
 				1826C4352F0FD0B40007799B /* NewListCreationCell.swift in Sources */,
 				18405BD42F0D428500EDF043 /* TagCell.swift in Sources */,
+				187612802F16488D0062FD66 /* WeekColumnDividerView.swift in Sources */,
 				1826C40A2F0F8F520007799B /* PasswordValidator.swift in Sources */,
 				1826C4222F0F9B9D0007799B /* UsernameValidator.swift in Sources */,
+				187612792F1626680062FD66 /* WeekEventCell.swift in Sources */,
 				18C978A62F0BC89400F77F10 /* TaskTableViewCell.swift in Sources */,
 				18C978922F0BBC0600F77F10 /* SignUpViewController.swift in Sources */,
 				18C9788C2F0BBBF600F77F10 /* SignInViewController.swift in Sources */,
 				18405BCE2F0D408400EDF043 /* ListCell.swift in Sources */,
 				18405BD72F0D42E300EDF043 /* TagItemCell.swift in Sources */,
+				1876126B2F1615890062FD66 /* MonthCell.swift in Sources */,
 				18C978632F0BBA4F00F77F10 /* AppDelegate.swift in Sources */,
 				18C9788F2F0BBC0200F77F10 /* OnboardingViewController.swift in Sources */,
+				1876127D2F1647690062FD66 /* WeekEvent.swift in Sources */,
 				1890A1432F1521FD008053A5 /* StickyWallViewController.swift in Sources */,
 				1826C4172F0F961F0007799B /* EmailValidator.swift in Sources */,
 				18C978652F0BBA4F00F77F10 /* SceneDelegate.swift in Sources */,
+				187612882F1670BA0062FD66 /* TimelineCell.swift in Sources */,
 				18405BD12F0D415900EDF043 /* AddButtonCell.swift in Sources */,
 				18C978A12F0BC80400F77F10 /* Task.swift in Sources */,
 				18405BCB2F0D3F1700EDF043 /* MenuItemCell.swift in Sources */,
@@ -846,6 +870,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		187612822F165ECA0062FD66 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.2;
+			};
+		};
 		18C978982F0BC14300F77F10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -857,6 +889,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		187612832F165ECA0062FD66 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 187612822F165ECA0062FD66 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		18C978992F0BC14300F77F10 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 18C978982F0BC14300F77F10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
