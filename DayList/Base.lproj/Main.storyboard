@@ -13,7 +13,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="5eh-dn-9EW">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="c80-a6-vqv" customClass="OnboardingViewController" customModule="DayList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingViewController" modalPresentationStyle="fullScreen" id="c80-a6-vqv" customClass="OnboardingViewController" customModule="DayList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kv9-KD-th7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,9 +66,6 @@
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="gWt-3Y-Aw4" kind="show" id="fJz-Mx-Xbp"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ce-LK-9Wv">
                                 <rect key="frame" x="20" y="789" width="374" height="38"/>
@@ -621,7 +618,6 @@
                                             <imageReference key="image" image="unnamed" renderingMode="original"/>
                                         </state>
                                         <connections>
-                                            <action selector="closeTapped:" destination="9KY-EC-ePB" eventType="touchUpInside" id="Acn-XH-I4o"/>
                                             <segue destination="gWt-3Y-Aw4" kind="show" id="PD7-lm-EEV"/>
                                         </connections>
                                     </button>
@@ -723,30 +719,36 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxx-mA-dhv">
                                         <rect key="frame" x="8" y="101" width="398" height="49"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add New Task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-rf-BNz">
-                                                <rect key="frame" x="54" y="0.0" width="344" height="49"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add New Task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-rf-BNz">
+                                                <rect key="frame" x="50" y="0.0" width="348" height="49"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="575-aV-v1t">
-                                                <rect key="frame" x="16" y="15" width="22" height="18"/>
-                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLD-2s-3TO">
+                                                <rect key="frame" x="10" y="13" width="22" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="22" id="GXF-ff-Pl3"/>
-                                                    <constraint firstAttribute="height" constant="22" id="thJ-wu-yy1"/>
+                                                    <constraint firstAttribute="width" constant="22" id="Icv-3r-pFL"/>
                                                 </constraints>
-                                            </imageView>
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="plus" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addButtonTapped:" destination="gWt-3Y-Aw4" eventType="touchUpInside" id="CBh-G8-nHE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="b8r-rf-BNz" secondAttribute="bottom" id="1on-SJ-sjJ"/>
-                                            <constraint firstItem="b8r-rf-BNz" firstAttribute="leading" secondItem="575-aV-v1t" secondAttribute="trailing" constant="16" id="9Va-a2-Pgp"/>
-                                            <constraint firstItem="575-aV-v1t" firstAttribute="top" secondItem="jxx-mA-dhv" secondAttribute="top" constant="13" id="Hvi-Sg-yZb"/>
-                                            <constraint firstItem="575-aV-v1t" firstAttribute="leading" secondItem="jxx-mA-dhv" secondAttribute="leading" constant="16" id="Xx8-Ky-ecd"/>
-                                            <constraint firstAttribute="trailing" secondItem="b8r-rf-BNz" secondAttribute="trailing" id="cY6-ya-sTQ"/>
+                                            <constraint firstItem="b8r-rf-BNz" firstAttribute="leading" secondItem="NLD-2s-3TO" secondAttribute="trailing" constant="18" id="BQE-Yu-8Sr"/>
+                                            <constraint firstAttribute="trailing" secondItem="b8r-rf-BNz" secondAttribute="trailing" id="KOv-T0-W1N"/>
+                                            <constraint firstAttribute="bottom" secondItem="b8r-rf-BNz" secondAttribute="bottom" id="KUM-dg-okh"/>
+                                            <constraint firstItem="NLD-2s-3TO" firstAttribute="centerY" secondItem="b8r-rf-BNz" secondAttribute="centerY" id="Px5-ra-Vdt"/>
+                                            <constraint firstItem="b8r-rf-BNz" firstAttribute="top" secondItem="jxx-mA-dhv" secondAttribute="top" id="SyA-ho-xjh"/>
                                             <constraint firstAttribute="height" constant="49" id="fUt-am-C1S"/>
+                                            <constraint firstItem="NLD-2s-3TO" firstAttribute="leading" secondItem="jxx-mA-dhv" secondAttribute="leading" constant="10" id="gCI-YC-189"/>
                                             <constraint firstAttribute="width" constant="398" id="hNK-sj-Hdt"/>
-                                            <constraint firstItem="b8r-rf-BNz" firstAttribute="top" secondItem="jxx-mA-dhv" secondAttribute="top" id="mtV-0m-iDB"/>
+                                            <constraint firstItem="NLD-2s-3TO" firstAttribute="top" secondItem="jxx-mA-dhv" secondAttribute="top" constant="13" id="kUh-5f-AmK"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ha0-tS-M36">
@@ -756,7 +758,7 @@
                                         </constraints>
                                         <state key="normal" title="LogOut"/>
                                         <connections>
-                                            <segue destination="tTS-b4-pdq" kind="show" id="c5p-XM-6SP"/>
+                                            <segue destination="c80-a6-vqv" kind="show" id="BnM-Gj-4Ie"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -826,7 +828,7 @@
                                             <outlet property="arrowButton" destination="sNi-kO-WZz" id="I5T-XK-o89"/>
                                             <outlet property="checkboxButton" destination="3Rq-bL-Bzr" id="Bqx-EP-eG8"/>
                                             <outlet property="titleContainerView" destination="beB-fm-0Ug" id="ajB-9J-5XQ"/>
-                                            <outlet property="titleLabel" destination="ei6-Mz-3D2" id="9B7-DZ-fbT"/>
+                                            <outlet property="titleLabel" destination="ei6-Mz-3D2" id="YSv-AU-DnO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -851,6 +853,8 @@
                     <navigationItem key="navigationItem" id="W6B-X5-90Q"/>
                     <connections>
                         <outlet property="TaskView" destination="jxx-mA-dhv" id="Hhu-Qi-7C3"/>
+                        <outlet property="addButton" destination="NLD-2s-3TO" id="eO0-Zk-NCa"/>
+                        <outlet property="addTaskTextField" destination="b8r-rf-BNz" id="MQP-KN-Iri"/>
                         <outlet property="badgeLabel" destination="naH-I2-nso" id="0ef-7e-7F1"/>
                         <outlet property="tableView" destination="4XH-c6-bBX" id="Fvz-Gs-QVo"/>
                     </connections>
@@ -929,6 +933,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="listButtonTapped:" destination="9KY-EC-ePB" eventType="touchUpInside" id="Qi7-58-b4p"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -971,6 +978,9 @@
                                                                         <integer key="value" value="8"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="dateButtonTapped:" destination="9KY-EC-ePB" eventType="touchUpInside" id="TjY-XY-Dq1"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1103,7 +1113,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="SVc-RS-hpP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                <state key="normal" title="Delete Task">
+                                                <state key="normal" title="Cancel Task">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -1112,7 +1122,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="deleteTapped:" destination="9KY-EC-ePB" eventType="touchUpInside" id="ES8-Dm-rFW"/>
                                                     <action selector="signUpTapped:" destination="RlE-xI-bvA" eventType="touchUpInside" id="FXH-Gb-ncE"/>
                                                 </connections>
                                             </button>
@@ -1220,10 +1229,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="deleteButton" destination="mvA-EO-1S9" id="2EQ-OR-b0M"/>
-                        <outlet property="descriptionTextField" destination="taL-aW-Fi3" id="8Yy-jz-e1X"/>
-                        <outlet property="dueDateButton" destination="iM9-6y-o5A" id="1Da-KR-Cbj"/>
-                        <outlet property="listButton" destination="ws2-gH-WEe" id="vtH-qB-c8u"/>
+                        <outlet property="cancelButton" destination="mvA-EO-1S9" id="VA2-aD-OaS"/>
+                        <outlet property="closeButton" destination="dGV-Xb-Gjx" id="Ida-g0-xl1"/>
+                        <outlet property="dateButton" destination="iM9-6y-o5A" id="3vk-cm-Ry5"/>
+                        <outlet property="descriptionTextField" destination="taL-aW-Fi3" id="vmp-Dv-wkb"/>
+                        <outlet property="listButton" destination="ws2-gH-WEe" id="gjA-yL-dA4"/>
                         <outlet property="saveButton" destination="Oyp-1I-SwS" id="1AC-M6-BAu"/>
                         <outlet property="titleTextField" destination="d0j-lo-L42" id="jcf-Ug-XuY"/>
                     </connections>
@@ -2195,9 +2205,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PD7-lm-EEV"/>
-        <segue reference="DuI-7K-pCN"/>
+        <segue reference="152-yW-LYC"/>
+        <segue reference="CkI-VG-RP9"/>
         <segue reference="bT2-jy-6Bv"/>
+        <segue reference="BnM-Gj-4Ie"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Gemini_Generated_Image_7h2zhz7h2zhz7h2z" width="1513" height="1462"/>

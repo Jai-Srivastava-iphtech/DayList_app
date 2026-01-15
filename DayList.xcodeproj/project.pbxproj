@@ -36,6 +36,12 @@
 		1890A1432F1521FD008053A5 /* StickyWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890A1422F1521FD008053A5 /* StickyWallViewController.swift */; };
 		1890A1472F1522F4008053A5 /* StickyNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890A1462F1522F4008053A5 /* StickyNote.swift */; };
 		1890A14B2F152319008053A5 /* StickyNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890A14A2F152319008053A5 /* StickyNoteCell.swift */; };
+		189C72CA2F18AE1600769426 /* DayList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 189C72C82F18AE1600769426 /* DayList.xcdatamodeld */; };
+		189C72D02F18AEF500769426 /* TaskEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CC2F18AEF500769426 /* TaskEntity+CoreDataClass.swift */; };
+		189C72D12F18AEF500769426 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CD2F18AEF500769426 /* TaskEntity+CoreDataProperties.swift */; };
+		189C72D22F18AEF500769426 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */; };
+		189C72D32F18AEF500769426 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */; };
+		189C72D72F18AF2200769426 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72D62F18AF2200769426 /* CoreDataManager.swift */; };
 		18C978632F0BBA4F00F77F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C978622F0BBA4F00F77F10 /* AppDelegate.swift */; };
 		18C978652F0BBA4F00F77F10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C978642F0BBA4F00F77F10 /* SceneDelegate.swift */; };
 		18C9786A2F0BBA4F00F77F10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C978682F0BBA4F00F77F10 /* Main.storyboard */; };
@@ -81,6 +87,12 @@
 		1890A1422F1521FD008053A5 /* StickyWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyWallViewController.swift; sourceTree = "<group>"; };
 		1890A1462F1522F4008053A5 /* StickyNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyNote.swift; sourceTree = "<group>"; };
 		1890A14A2F152319008053A5 /* StickyNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyNoteCell.swift; sourceTree = "<group>"; };
+		189C72C92F18AE1600769426 /* DayList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DayList.xcdatamodel; sourceTree = "<group>"; };
+		189C72CC2F18AEF500769426 /* TaskEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		189C72CD2F18AEF500769426 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		189C72D62F18AF2200769426 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		18C9785F2F0BBA4F00F77F10 /* DayList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C978622F0BBA4F00F77F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C978642F0BBA4F00F77F10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +383,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		189C72D52F18AF0B00769426 /* DB Helper */ = {
+			isa = PBXGroup;
+			children = (
+				189C72C82F18AE1600769426 /* DayList.xcdatamodeld */,
+				189C72CC2F18AEF500769426 /* TaskEntity+CoreDataClass.swift */,
+				189C72CD2F18AEF500769426 /* TaskEntity+CoreDataProperties.swift */,
+				189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */,
+				189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */,
+				189C72D62F18AF2200769426 /* CoreDataManager.swift */,
+			);
+			path = "DB Helper";
+			sourceTree = "<group>";
+		};
 		18C978562F0BBA4F00F77F10 = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +416,7 @@
 		18C978612F0BBA4F00F77F10 /* DayList */ = {
 			isa = PBXGroup;
 			children = (
+				189C72D52F18AF0B00769426 /* DB Helper */,
 				18C9787A2F0BBB4100F77F10 /* Onboarding */,
 				18C978792F0BBB3700F77F10 /* SignIn */,
 				18C978782F0BBAAE00F77F10 /* SignUp */,
@@ -639,10 +665,13 @@
 				1826C4352F0FD0B40007799B /* NewListCreationCell.swift in Sources */,
 				18405BD42F0D428500EDF043 /* TagCell.swift in Sources */,
 				187612802F16488D0062FD66 /* WeekColumnDividerView.swift in Sources */,
+				189C72D12F18AEF500769426 /* TaskEntity+CoreDataProperties.swift in Sources */,
 				1826C40A2F0F8F520007799B /* PasswordValidator.swift in Sources */,
+				189C72D02F18AEF500769426 /* TaskEntity+CoreDataClass.swift in Sources */,
 				1826C4222F0F9B9D0007799B /* UsernameValidator.swift in Sources */,
 				187612792F1626680062FD66 /* WeekEventCell.swift in Sources */,
 				18C978A62F0BC89400F77F10 /* TaskTableViewCell.swift in Sources */,
+				189C72D32F18AEF500769426 /* UserEntity+CoreDataProperties.swift in Sources */,
 				18C978922F0BBC0600F77F10 /* SignUpViewController.swift in Sources */,
 				18C9788C2F0BBBF600F77F10 /* SignInViewController.swift in Sources */,
 				18405BCE2F0D408400EDF043 /* ListCell.swift in Sources */,
@@ -652,8 +681,10 @@
 				18C9788F2F0BBC0200F77F10 /* OnboardingViewController.swift in Sources */,
 				1876127D2F1647690062FD66 /* WeekEvent.swift in Sources */,
 				1890A1432F1521FD008053A5 /* StickyWallViewController.swift in Sources */,
+				189C72D72F18AF2200769426 /* CoreDataManager.swift in Sources */,
 				1826C4172F0F961F0007799B /* EmailValidator.swift in Sources */,
 				18C978652F0BBA4F00F77F10 /* SceneDelegate.swift in Sources */,
+				189C72CA2F18AE1600769426 /* DayList.xcdatamodeld in Sources */,
 				187612882F1670BA0062FD66 /* TimelineCell.swift in Sources */,
 				18405BD12F0D415900EDF043 /* AddButtonCell.swift in Sources */,
 				18C978A12F0BC80400F77F10 /* Task.swift in Sources */,
@@ -666,6 +697,7 @@
 				1890A12F2F14F404008053A5 /* CalendarViewController.swift in Sources */,
 				1890A1282F14D8D1008053A5 /* UpcomingViewController.swift in Sources */,
 				1890A14B2F152319008053A5 /* StickyNoteCell.swift in Sources */,
+				189C72D22F18AEF500769426 /* UserEntity+CoreDataClass.swift in Sources */,
 				1890A0F92F14C341008053A5 /* SeparatorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -905,6 +937,19 @@
 			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		189C72C82F18AE1600769426 /* DayList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				189C72C92F18AE1600769426 /* DayList.xcdatamodel */,
+			);
+			currentVersion = 189C72C92F18AE1600769426 /* DayList.xcdatamodel */;
+			path = DayList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18C978572F0BBA4F00F77F10 /* Project object */;
 }
