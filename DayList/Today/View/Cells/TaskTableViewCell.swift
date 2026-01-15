@@ -15,15 +15,20 @@ class TaskTableViewCell: UITableViewCell {
 
     // MARK: - Callbacks
     var onCellTap: (() -> Void)?
+    var onCheckboxTap: ((Bool) -> Void)?  // NEW
 
     // MARK: - Metadata
     private var metadataStackView: UIStackView?
     private var separatorView: UIView?
+    private var isCompleted: Bool = false  // NEW
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        checkboxButton?.isUserInteractionEnabled = false
+        // Make checkbox interactive
+        checkboxButton?.isUserInteractionEnabled = true  // CHANGED
+        checkboxButton?.addTarget(self, action: #selector(checkboxTapped), for: .touchUpInside)  // NEW
+        
         arrowButton?.isUserInteractionEnabled = false
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
@@ -33,15 +38,27 @@ class TaskTableViewCell: UITableViewCell {
     @objc private func cellTapped() {
         onCellTap?()
     }
+    
+    // NEW: Handle checkbox tap
+    @objc private func checkboxTapped() {
+        isCompleted.toggle()
+        updateCheckboxAppearance()
+        onCheckboxTap?(isCompleted)
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         removeMetadata()
         onCellTap = nil
+        onCheckboxTap = nil  // NEW
+        isCompleted = false  // NEW
     }
 
     func configure(with task: Task) {
         titleLabel?.text = task.title
+        isCompleted = task.isCompleted  // NEW
+        
+        updateCheckboxAppearance()  // NEW
 
         titleContainerView?.setContentHuggingPriority(.required, for: .vertical)
         titleContainerView?.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -69,12 +86,10 @@ class TaskTableViewCell: UITableViewCell {
             icon.contentMode = .scaleAspectFill
             icon.translatesAutoresizingMaskIntoConstraints = false
 
-            // --- UPDATED SIZE HERE (14 -> 18) ---
             NSLayoutConstraint.activate([
                 icon.widthAnchor.constraint(equalToConstant: 18),
                 icon.heightAnchor.constraint(equalToConstant: 18)
             ])
-            // ------------------------------------
 
             let label = UILabel()
             label.text = date
@@ -82,7 +97,7 @@ class TaskTableViewCell: UITableViewCell {
             label.textColor = .systemGray
 
             let dateStack = UIStackView(arrangedSubviews: [icon, label])
-            dateStack.spacing = 6 // Increased spacing slightly
+            dateStack.spacing = 6
             dateStack.alignment = .center
             stack.addArrangedSubview(dateStack)
         }
@@ -145,18 +160,28 @@ class TaskTableViewCell: UITableViewCell {
         if hasMetadata {
             contentView.addSubview(stack)
             
-            let leadingAnchor = titleLabel?.leadingAnchor ?? contentView.leadingAnchor
+            // FIXED: Ensure metadata aligns with title (after checkbox), not cell edge
+            let leadingAnchor: NSLayoutXAxisAnchor
+            if let titleLeading = titleLabel?.leadingAnchor {
+                leadingAnchor = titleLeading
+            } else if let checkboxTrailing = checkboxButton?.trailingAnchor {
+                leadingAnchor = checkboxTrailing
+            } else {
+                leadingAnchor = contentView.leadingAnchor
+            }
+            
             let trailingAnchor = arrowButton?.leadingAnchor ?? contentView.trailingAnchor
             let topAnchor = titleContainerView?.bottomAnchor ?? titleLabel?.bottomAnchor ?? contentView.topAnchor
 
             NSLayoutConstraint.activate([
-                stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+                stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0), // No extra padding needed
                 stack.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -8),
                 stack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
                 stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
             ])
             metadataStackView = stack
         }
+
 
         // SEPARATOR
         let separator = UIView()
@@ -173,6 +198,38 @@ class TaskTableViewCell: UITableViewCell {
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         separatorView = separator
+    }
+    
+    // NEW: Update checkbox appearance based on completion state
+    private func updateCheckboxAppearance() {
+        if isCompleted {
+            // Checked state
+            checkboxButton?.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+            checkboxButton?.tintColor = .systemBlue
+            
+            // Strikethrough and gray text
+            if let text = titleLabel?.text {
+                titleLabel?.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                        .foregroundColor: UIColor.lightGray
+                    ]
+                )
+            }
+        } else {
+            // Unchecked state
+            checkboxButton?.setImage(UIImage(systemName: "square"), for: .normal)
+            checkboxButton?.tintColor = .systemGray
+            
+            // Normal text
+            if let text = titleLabel?.text {
+                titleLabel?.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [.foregroundColor: UIColor.black]
+                )
+            }
+        }
     }
 
     private func removeMetadata() {
