@@ -42,6 +42,8 @@
 		189C72D22F18AEF500769426 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */; };
 		189C72D32F18AEF500769426 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */; };
 		189C72D72F18AF2200769426 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72D62F18AF2200769426 /* CoreDataManager.swift */; };
+		189C72EA2F19055100769426 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72E92F19055100769426 /* KeychainManager.swift */; };
+		189C72ED2F19058700769426 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C72EC2F19058700769426 /* SessionManager.swift */; };
 		18C978632F0BBA4F00F77F10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C978622F0BBA4F00F77F10 /* AppDelegate.swift */; };
 		18C978652F0BBA4F00F77F10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C978642F0BBA4F00F77F10 /* SceneDelegate.swift */; };
 		18C9786A2F0BBA4F00F77F10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C978682F0BBA4F00F77F10 /* Main.storyboard */; };
@@ -93,6 +95,8 @@
 		189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		189C72D62F18AF2200769426 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		189C72E92F19055100769426 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		189C72EC2F19058700769426 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		18C9785F2F0BBA4F00F77F10 /* DayList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C978622F0BBA4F00F77F10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C978642F0BBA4F00F77F10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 				189C72CE2F18AEF500769426 /* UserEntity+CoreDataClass.swift */,
 				189C72CF2F18AEF500769426 /* UserEntity+CoreDataProperties.swift */,
 				189C72D62F18AF2200769426 /* CoreDataManager.swift */,
+				189C72E92F19055100769426 /* KeychainManager.swift */,
+				189C72EC2F19058700769426 /* SessionManager.swift */,
 			);
 			path = "DB Helper";
 			sourceTree = "<group>";
@@ -686,6 +692,7 @@
 				18C978652F0BBA4F00F77F10 /* SceneDelegate.swift in Sources */,
 				189C72CA2F18AE1600769426 /* DayList.xcdatamodeld in Sources */,
 				187612882F1670BA0062FD66 /* TimelineCell.swift in Sources */,
+				189C72ED2F19058700769426 /* SessionManager.swift in Sources */,
 				18405BD12F0D415900EDF043 /* AddButtonCell.swift in Sources */,
 				18C978A12F0BC80400F77F10 /* Task.swift in Sources */,
 				18405BCB2F0D3F1700EDF043 /* MenuItemCell.swift in Sources */,
@@ -695,6 +702,7 @@
 				1890A11E2F14D887008053A5 /* MenuItem.swift in Sources */,
 				18C978892F0BBBEF00F77F10 /* TodayViewController.swift in Sources */,
 				1890A12F2F14F404008053A5 /* CalendarViewController.swift in Sources */,
+				189C72EA2F19055100769426 /* KeychainManager.swift in Sources */,
 				1890A1282F14D8D1008053A5 /* UpcomingViewController.swift in Sources */,
 				1890A14B2F152319008053A5 /* StickyNoteCell.swift in Sources */,
 				189C72D22F18AEF500769426 /* UserEntity+CoreDataClass.swift in Sources */,

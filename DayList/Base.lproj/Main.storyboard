@@ -758,6 +758,7 @@
                                         </constraints>
                                         <state key="normal" title="LogOut"/>
                                         <connections>
+                                            <action selector="logoutTapped:" destination="gWt-3Y-Aw4" eventType="touchUpInside" id="VL0-dB-Mij"/>
                                             <segue destination="c80-a6-vqv" kind="show" id="BnM-Gj-4Ie"/>
                                         </connections>
                                     </button>

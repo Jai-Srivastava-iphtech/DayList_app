@@ -54,7 +54,20 @@ class TodayViewController: UIViewController {
             openCreateTask()
         }
     }
-    
+    @IBAction func logoutTapped(_ sender: UIButton) {
+        // Clear session
+        SessionManager.shared.logout()
+        
+        // Navigate to SignIn
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
+        
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = signInVC
+            sceneDelegate.window?.makeKeyAndVisible()
+        }
+    }
+
 
     private func navigateToSignIn() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
