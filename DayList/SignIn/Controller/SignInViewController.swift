@@ -89,23 +89,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             }
             
             // Check if user exists
-            guard authResult?.user != nil else {
+            guard let user = authResult?.user else {
                 self.showAlert("Sign in failed. Please try again.")
                 return
             }
             
+            // Set current user in Core Data
+            CoreDataManager.shared.setCurrentUser(userId: user.uid)
+            
             // Success - go to home
-            print("✅ Sign in successful!")
+            print("Sign in successful!")
             self.goToHome()
         }
     }
     
-    // MARK: - Firebase Error Handling (FINAL - Works for all cases)
+    // MARK: - Firebase Error Handling
     private func handleFirebaseError(_ error: Error) {
         let nsError = error as NSError
         let errorCode = nsError.code
         
-        // Debug prints (you can remove these later)
+        // Debug prints
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Firebase Error Code: \(errorCode)")
         print("Error Description: \(error.localizedDescription)")
@@ -139,8 +142,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             showAlert("Network error.\n\nCheck your internet connection.")
             
         case 17999: // ERROR_INTERNAL (Generic error for invalid credentials)
-            // For error 17999, we can't distinguish between wrong email and wrong password
-            // So we show a generic message
             showAlert("Invalid email or password.\n\nPlease check your credentials.")
             emailTextField.becomeFirstResponder()
             
@@ -158,7 +159,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             showAlert("This account has been disabled.")
             
         default:
-            // For unknown errors, show the actual error message
             showAlert("Sign in failed.\n\n\(error.localizedDescription)")
         }
     }

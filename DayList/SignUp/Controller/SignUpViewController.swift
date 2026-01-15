@@ -163,15 +163,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             changeRequest.commitChanges { error in
                 if let error = error {
-                    print("⚠️ Error saving username: \(error.localizedDescription)")
-                    // Account created but username save failed
+                    print("⚠️ Error saving username to Firebase: \(error.localizedDescription)")
                 }
+                
+                // ✨ NEW: Save user to Core Data
+                let userId = user.uid
+                _ = CoreDataManager.shared.createUser(
+                    userId: userId,
+                    name: username,
+                    email: email
+                )
                 
                 print("✅ Account created! Username: \(username)")
                 self.showSuccessAlert()
             }
         }
     }
+
     
     // MARK: - Firebase Error Handling
     private func handleFirebaseError(_ error: Error) {
