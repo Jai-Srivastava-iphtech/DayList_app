@@ -167,8 +167,7 @@ This repository demonstrates a **real-world iOS app flow** including **Onboardin
 ## Demo Video
 
 🎬 **Watch Full Demo**  
-https://go.screenpal.com/watch/cOVIl7nrg0h
-
+https://go.screenpal.com/watch/cOVoXgnrmqY
 ---
 
 ## License
