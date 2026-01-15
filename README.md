@@ -3,9 +3,9 @@
 ## Introduction
 
 DayList is a clean and minimal **iOS To-Do application** built using **Swift**, **UIKit**, and **Storyboards**.
-The project focuses on building a solid **authentication and task-management foundation**, featuring **Firebase Authentication**, **Core Data** for local persistence, a custom side menu, categorized task lists (Today, Upcoming, Work), a **Calendar** module, and smart user interactions.
+The project focuses on building a solid **authentication and task-management foundation**, featuring **Firebase Authentication**, **Core Data** for local persistence, **Keychain-based secure credential storage**, **session management**, a custom side menu, categorized task lists (Today, Upcoming, Work), a **Calendar** module, and smart user interactions.
 
-This repository demonstrates a **real-world iOS app flow** including **Onboarding**, **Firebase Authentication**, **Core Data Integration**, **Custom Side Menu Navigation**, and **Advanced TableView handling**.
+This repository demonstrates a **real-world iOS app flow** including **Onboarding**, **Firebase Authentication**, **Secure Session Management**, **Core Data Integration**, **Custom Side Menu Navigation**, and **Advanced TableView handling**.
 
 ---
 
@@ -15,13 +15,13 @@ This repository demonstrates a **real-world iOS app flow** including **Onboardin
   Introductory screen displayed on first launch.
 
 - **Sign In & Sign Up Screens**  
-  Secure authentication using Firebase (Email & Password) with Core Data integration.
+  Secure authentication using Firebase (Email & Password) with Core Data, Keychain, and session integration.
 
 - **Menu Screen (Side Navigation)**  
   A central hub to navigate between Tasks (Today, Upcoming, Calendar), Lists (Personal, Work), Sticky Wall, and Tags. Includes a "Sign Out" feature.
 
 - **Today Screen**  
-  Displays the user's daily tasks in a clean list with user-specific task filtering.
+  Displays the user's daily tasks in a clean list with user-specific task filtering and logout support.
 
 - **Upcoming Screen**  
   A complex multi-section view ("Today", "Tomorrow", "This Week") where each section has its own interactive "Add New Task" input field.
@@ -42,12 +42,17 @@ This repository demonstrates a **real-world iOS app flow** including **Onboardin
 
 ## Features
 
-### Onboarding & Authentication
+### Onboarding, Authentication & Session Management
 - **Entry Point:** Clean onboarding flow introducing the app.
 - **Validation:** Real-time checks for email format, password strength, and matching confirmation fields.
 - **Firebase Auth:** Secure account creation and login handling.
+- **Keychain Integration:** Secure storage of sensitive credentials using iOS Keychain (`kSecClassGenericPassword`).
+- **SessionManager:** Centralized session handling with login, restore, and logout support.
+- **Auto Login:** Automatically navigates logged-in users to Today screen on app relaunch.
+- **SceneDelegate Routing:** Session-based root controller selection (Onboarding vs Today).
 - **Core Data Integration:** Automatic user entity creation upon Firebase authentication.
-- **User Persistence:** Links Firebase UID to local Core Data user entities.
+- **User Persistence:** Firebase UID mapped to local Core Data user entities.
+- **Logout Handling:** Clears Keychain, UserDefaults, and Core Data session context.
 - **Error Handling:** Clear inline error messages for invalid inputs.
 
 ### Core Data Implementation
@@ -63,52 +68,32 @@ This repository demonstrates a **real-world iOS app flow** including **Onboardin
 ### Custom Side Menu
 - **Central Navigation:** Navigate between "Today", "Upcoming", "Calendar", "Sticky Wall", and custom Lists.
 - **Dynamic Content:** Lists can be expanded, and new lists can be added directly from the menu.
-- **Sign Out:** Integrated logout functionality with Core Data cleanup.
+- **Sign Out:** Integrated logout functionality with Keychain cleanup and session reset.
 
 ### Advanced Calendar Integration
 - **Three-Mode View:** Seamlessly toggle between **Day**, **Week**, and **Month** views using a Segmented Control.
 - **Day View (Timeline):** A vertical timeline layout using a custom `UITableView`. Features visual time markers, event blocks, and a horizontal week strip header.
 - **Week View (Columns):** A horizontal grid using `UICollectionView` to visualize events across 7 days with color-coded categories.
-- **Month View:** A full-sized calendar implementation using `FSCalendar` with custom styling (hidden default headers, sticky weekday rows, and custom fonts).
-- **Synchronization:** Real-time state syncing—selecting a date in the Month view automatically updates the Day and Week views.
+- **Month View:** A full-sized calendar implementation using `FSCalendar` with custom styling.
+- **Synchronization:** Real-time state syncing across Day, Week, and Month views.
 
 ### Task Management
 - **User-Specific Filtering:** Each user sees only their own tasks.
 - **Task Completion:** Toggle task completion status with checkbox interaction.
-- **Quick Task Creation:** Add tasks directly from Today view with minimal input.
+- **Quick Task Creation:** Add tasks directly from Today view.
 - **Detailed Task Creation:** Full task details via Task Detail screen.
 - **Swipe to Delete:** Intuitive swipe gesture for task deletion.
 - **Automatic Persistence:** All changes saved immediately to Core Data.
 
-### Upcoming Task Management
-- **Multi-Section Layout:** Tasks categorized by "Today", "Tomorrow", and "This Week".
-- **Smart Input Fields:** Each section has a dedicated "Add New Task" row that allows typing without navigation.
-- **Gesture Handling:** Smart keyboard dismissal that distinguishes between tapping a button (to type) and tapping the background (to close).
-
-### Work & Project Lists
-- **Custom List Views:** Dedicated screens for specific projects (like "Work").
-- **Task Metadata:** Tasks display subtask counts, due dates, and color-coded list tags.
-- **Reusability:** Uses a shared, highly configurable `TaskTableViewCell` to ensure consistent design across all screens.
-
-### Sticky Wall (Visual Notes Board)
-- **Grid-Based Layout:** Built using `UICollectionView` with a custom flow layout.
-- **Mixed Card Sizes:**
-  - A large, full-width sticky note at the top.
-  - Smaller two-column sticky notes below.
-- **Color-Coded Cards:** Each sticky note has a soft background color for visual grouping.
-- **Dynamic Text Support:** Cards automatically expand based on content length.
-- **Clean UI:** Rounded corners, consistent spacing, and minimal styling to match modern iOS design.
-- **Navigation:** Opens directly from the Menu under the "Sticky Wall" option.
-
 ### Technical Highlights
 - **Architecture:** MVC (Model-View-Controller).
+- **Authentication:** Firebase Authentication with Keychain-backed session persistence.
+- **Security:** Secure credential storage using iOS Keychain (iOS 12+ compatible).
+- **Session Flow:** SessionManager + SceneDelegate-based navigation.
 - **Data Persistence:** Core Data for local storage with user-specific filtering.
-- **Authentication:** Firebase Authentication with Core Data synchronization.
 - **UIKit & Storyboards:** Layouts built using Interface Builder and programmatic constraints.
-- **Advanced TableView:** Handling multiple cell types, custom headers, and conflict resolution between touch gestures and table selection.
-- **CollectionView Layouts:** Custom sizing logic for grid-based and full-width cards.
-- **Third-Party Integration:** Implementation of **FSCalendar** via Swift Package Manager (SPM).
-- **Compatibility:** Optimized for iOS 12+ (using fallbacks for SF Symbols).
+- **Third-Party Integration:** FSCalendar via Swift Package Manager (SPM).
+- **Compatibility:** Optimized for iOS 12+.
 
 ---
 
@@ -139,35 +124,11 @@ This repository demonstrates a **real-world iOS app flow** including **Onboardin
 
 ---
 
-
-## Key Features Implemented
-
-### Firebase Authentication
-- Email/password sign up and sign in
-- Automatic user profile creation in Core Data
-- Secure authentication flow with validation
-- Sign out with Core Data cleanup
-
-### Core Data Integration
-- User entity with Firebase UID mapping
-- Task entity with user relationship
-- Automatic data persistence
-- User-specific task filtering
-- Sample data generation for new users
-
-### Task Management
-- Create, read, update, delete tasks
-- Task completion tracking
-- Quick task creation from Today view
-- Detailed task editing
-- Swipe-to-delete functionality
-
----
-
 ## Demo Video
 
 🎬 **Watch Full Demo**  
 https://go.screenpal.com/watch/cOVoXgnrmqY
+
 ---
 
 ## License
