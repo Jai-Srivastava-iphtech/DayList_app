@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Create Account
-    private func createAccount(username: String, email: String, password: String) {
+    private func createAccount(username: String , email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             
@@ -163,10 +163,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             changeRequest.commitChanges { error in
                 if let error = error {
-                    print("⚠️ Error saving username to Firebase: \(error.localizedDescription)")
+                    print("Warning: Error saving username to Firebase: \(error.localizedDescription)")
                 }
                 
-                // ✨ NEW: Save user to Core Data
                 let userId = user.uid
                 _ = CoreDataManager.shared.createUser(
                     userId: userId,
@@ -174,9 +173,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     email: email
                 )
                 
-                print("✅ Account created! Username: \(username)")
+                // ADD THIS - Create session after signup
+                SessionManager.shared.createSession(userId: userId, email: email)
+                
+                print("Account created! Username: \(username)")
                 self.showSuccessAlert()
             }
+
         }
     }
 

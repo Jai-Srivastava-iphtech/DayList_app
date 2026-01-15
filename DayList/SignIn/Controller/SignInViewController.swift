@@ -99,6 +99,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             
             // Success - go to home
             print("Sign in successful!")
+            SessionManager.shared.createSession(userId: user.uid, email: email)
             self.goToHome()
         }
     }
