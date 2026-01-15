@@ -16,8 +16,9 @@ extension TaskEntity {
         return NSFetchRequest<TaskEntity>(entityName: "TaskEntity")
     }
 
-    @NSManaged public var id: String?
-    @NSManaged public var title: Int32
+    @NSManaged public var taskId: String?
+    @NSManaged public var userId: String?
+    @NSManaged public var title: String?
     @NSManaged public var taskDescription: String?
     @NSManaged public var dateText: String?
     @NSManaged public var subtaskCount: Int16
